@@ -1,0 +1,19 @@
+<div>
+test url
+</div>
+<script>
+function IsURL(urlString)
+{
+regExp = /[a-zA-z]+:\/\/[^\s]*/
+
+ if (urlString.match(regExp))
+
+ return "is a url";
+ else
+
+ return "not a url";       
+}
+
+url = "www.baidu.com";
+alert(IsURL(url));
+</script>

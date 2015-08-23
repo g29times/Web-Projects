@@ -1,0 +1,644 @@
+<sql db="mysql">
+<datatypes db="mysql">
+<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+<type label="INT" length="0" sql="INT" quote=""/>
+<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+<type label="INTEGER" length="0" sql="INTEGER" quote=""/>
+<type label="FLOAT" length="0" sql="FLOAT" quote=""/>
+<type label="REAL" length="0" sql="REAL" quote=""/>
+<type label="DOUBLE" length="0" sql="DOUBLE" quote=""/>
+<type label="BIT" length="0" sql="BIT" quote=""/>
+<type label="SERIAL" length="0" sql="SERIAL" quote=""/>
+<type label="BOOLEAN" length="0" sql="BOOLEAN" quote=""/>
+<type label="BOOL" length="0" sql="BOOL" quote=""/>
+<type label="DATE" length="0" sql="DATE" quote=""/>
+<type label="DATETIME" length="0" sql="DATETIME" quote=""/>
+<type label="TIMESTAMP" length="0" sql="TIMESTAMP" quote=""/>
+<type label="TIME" length="0" sql="TIME" quote=""/>
+<type label="YEAR" length="0" sql="YEAR" quote=""/>
+<type label="CHAR" length="0" sql="CHAR" quote=""/>
+<type label="VARCHAR" length="0" sql="VARCHAR" quote=""/>
+<type label="TINYTEXT" length="0" sql="TINYTEXT" quote=""/>
+<type label="MEDIUMTEXT" length="0" sql="MEDIUMTEXT" quote=""/>
+<type label="LONGTEXT" length="0" sql="LONGTEXT" quote=""/>
+<type label="BINARY" length="0" sql="BINARY" quote=""/>
+<type label="VARBINARY" length="0" sql="VARBINARY" quote=""/>
+<type label="TINYBLOB" length="0" sql="TINYBLOB" quote=""/>
+<type label="BLOB" length="0" sql="BLOB" quote=""/>
+<type label="MEDIUMBLOB" length="0" sql="MEDIUMBLOB" quote=""/>
+<type label="LONGBLOB" length="0" sql="LONGBLOB" quote=""/>
+<type label="ENUM" length="0" sql="ENUM" quote=""/>
+<type label="SET" length="0" sql="SET" quote=""/>
+<type label="LINESTRING" length="0" sql="LINESTRING" quote=""/>
+<type label="POLYGON" length="0" sql="POLYGON" quote=""/>
+<type label="GEOMETRY" length="0" sql="GEOMETRY" quote=""/>
+<type label="MULTIPOINT" length="0" sql="MULTIPOINT" quote=""/>
+<type label="MULTILINESTRING" length="0" sql="MULTILINESTRING" quote=""/>
+<type label="MULTIPOLYGON" length="0" sql="MULTIPOLYGON" quote=""/>
+<type label="GEOMETRYCOLLECTION" length="0" sql="GEOMETRYCOLLECTION" quote=""/>
+</datatypes>
+<table name="wp_commentmeta">
+<row name="meta_id" namevalue="meta_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>meta_id</part>
+</key>
+</row>
+<row name="comment_id" namevalue="comment_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="meta_key" namevalue="meta_key" null="1" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="meta_value" namevalue="meta_value" null="1" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<key name="comment_id" type="UNIQUE">
+<part>comment_id</part>
+</key>
+<key name="meta_key" type="UNIQUE">
+<part>meta_key</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>meta_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>meta_id</part>
+</key>
+</table>
+<table name="wp_comments">
+<row name="comment_ID" namevalue="comment_ID" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>comment_ID</part>
+</key>
+</row>
+<row name="comment_post_ID" namevalue="comment_post_ID" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="comment_author" namevalue="comment_author" null="0" datatypename="tinytext" autoincrement="0">
+<datatype>TINYTEXT</datatype>
+<default/>
+</row>
+<row name="comment_author_email" namevalue="comment_author_email" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="comment_author_url" namevalue="comment_author_url" null="0" datatypename="varchar(200)" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+<default/>
+</row>
+<row name="comment_author_IP" namevalue="comment_author_IP" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="comment_date" namevalue="comment_date" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="comment_date_gmt" namevalue="comment_date_gmt" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="comment_content" namevalue="comment_content" null="0" datatypename="text" autoincrement="0">
+<datatype>TEXT</datatype>
+<default/>
+</row>
+<row name="comment_karma" namevalue="comment_karma" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default>
+</row>
+<row name="comment_approved" namevalue="comment_approved" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>1</default>
+</row>
+<row name="comment_agent" namevalue="comment_agent" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="comment_type" namevalue="comment_type" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default/>
+</row>
+<row name="comment_parent" namevalue="comment_parent" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="user_id" namevalue="user_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<key name="comment_approved_date_gmt" type="UNIQUE">
+<part>comment_approved</part>
+<part>comment_date_gmt</part>
+</key>
+<key name="comment_author_email" type="UNIQUE">
+<part>comment_author_email</part>
+</key>
+<key name="comment_date_gmt" type="UNIQUE">
+<part>comment_date_gmt</part>
+</key>
+<key name="comment_parent" type="UNIQUE">
+<part>comment_parent</part>
+</key>
+<key name="comment_post_ID" type="UNIQUE">
+<part>comment_post_ID</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>comment_ID</part>
+<part>id</part>
+</key>
+</table>
+<table name="wp_layerslider">
+<row name="id" namevalue="id" null="0" datatypename="int(10)" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>id</part>
+</key>
+</row>
+<row name="author" namevalue="author" null="0" datatypename="int(10)" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default>
+</row>
+<row name="name" namevalue="name" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="slug" namevalue="slug" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="data" namevalue="data" null="0" datatypename="mediumtext" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default/>
+</row>
+<row name="date_c" namevalue="date_c" null="0" datatypename="int(10)" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default/>
+</row>
+<row name="date_m" namevalue="date_m" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default/>
+</row>
+<row name="flag_hidden" namevalue="flag_hidden" null="0" datatypename="tinyint(1)" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default>
+</row>
+<row name="flag_deleted" namevalue="flag_deleted" null="0" datatypename="tinyint(1)" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default>
+</row>
+</table>
+<table name="wp_links">
+<row name="link_id" namevalue="link_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>link_id</part>
+</key>
+</row>
+<row name="link_url" namevalue="link_url" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="link_name" namevalue="link_name" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="link_image" namevalue="link_image" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="link_target" namevalue="link_target" null="0" datatypename="varchar(25)" autoincrement="0">
+<datatype>VARCHAR(25)</datatype>
+<default/>
+</row>
+<row name="link_description" namevalue="link_description" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="link_visible" namevalue="link_visible" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>Y</default>
+</row>
+<row name="link_owner" namevalue="link_owner" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>1</default>
+</row>
+<row name="link_rating" namevalue="link_rating" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default>
+</row>
+<row name="link_updated" namevalue="link_updated" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="link_rel" namevalue="link_rel" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="link_notes" namevalue="link_notes" null="0" datatypename="mediumtext" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default/>
+</row>
+<row name="link_rss" namevalue="link_rss" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<key name="link_visible" type="UNIQUE">
+<part>link_visible</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>link_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>link_id</part>
+</key>
+</table>
+<table name="wp_options">
+<row name="option_id" namevalue="option_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>option_id</part>
+</key>
+</row>
+<row name="option_name" namevalue="option_name" null="0" datatypename="varchar(64)" autoincrement="0">
+<datatype>VARCHAR(64)</datatype>
+<default/>
+</row>
+<row name="option_value" namevalue="option_value" null="0" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<row name="autoload" namevalue="autoload" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>yes</default>
+</row>
+<key name="option_name" type="UNIQUE">
+<part>option_name</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>option_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>option_id</part>
+</key>
+</table>
+<table name="wp_postmeta">
+<row name="meta_id" namevalue="meta_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>meta_id</part>
+</key>
+</row>
+<row name="post_id" namevalue="post_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="meta_key" namevalue="meta_key" null="1" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="meta_value" namevalue="meta_value" null="1" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<key name="meta_key" type="UNIQUE">
+<part>meta_key</part>
+</key>
+<key name="post_id" type="UNIQUE">
+<part>post_id</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>meta_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>meta_id</part>
+</key>
+</table>
+<table name="wp_posts">
+<row name="ID" namevalue="ID" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>ID</part>
+</key>
+</row>
+<row name="post_author" namevalue="post_author" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="post_date" namevalue="post_date" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="post_date_gmt" namevalue="post_date_gmt" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="post_content" namevalue="post_content" null="0" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<row name="post_title" namevalue="post_title" null="0" datatypename="text" autoincrement="0">
+<datatype>TEXT</datatype>
+<default/>
+</row>
+<row name="post_excerpt" namevalue="post_excerpt" null="0" datatypename="text" autoincrement="0">
+<datatype>TEXT</datatype>
+<default/>
+</row>
+<row name="post_status" namevalue="post_status" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>publish</default>
+</row>
+<row name="comment_status" namevalue="comment_status" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>open</default>
+</row>
+<row name="ping_status" namevalue="ping_status" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>open</default>
+</row>
+<row name="post_password" namevalue="post_password" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default/>
+</row>
+<row name="post_name" namevalue="post_name" null="0" datatypename="varchar(200)" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+<default/>
+</row>
+<row name="to_ping" namevalue="to_ping" null="0" datatypename="text" autoincrement="0">
+<datatype>TEXT</datatype>
+<default/>
+</row>
+<row name="pinged" namevalue="pinged" null="0" datatypename="text" autoincrement="0">
+<datatype>TEXT</datatype>
+<default/>
+</row>
+<row name="post_modified" namevalue="post_modified" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="post_modified_gmt" namevalue="post_modified_gmt" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="post_content_filtered" namevalue="post_content_filtered" null="0" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<row name="post_parent" namevalue="post_parent" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="guid" namevalue="guid" null="0" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="menu_order" namevalue="menu_order" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default>
+</row>
+<row name="post_type" namevalue="post_type" null="0" datatypename="varchar(20)" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>post</default>
+</row>
+<row name="post_mime_type" namevalue="post_mime_type" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="comment_count" namevalue="comment_count" null="0" datatypename="bigint(20)" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<default>0</default>
+</row>
+<key name="post_author" type="UNIQUE">
+<part>post_author</part>
+</key>
+<key name="post_name" type="UNIQUE">
+<part>post_name</part>
+</key>
+<key name="post_parent" type="UNIQUE">
+<part>post_parent</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>ID</part>
+</key>
+<key name="type_status_date" type="UNIQUE">
+<part>post_type</part>
+<part>post_status</part>
+<part>post_date</part>
+<part>ID</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>ID</part>
+</key>
+</table>
+<table name="wp_term_relationships">
+<row name="object_id" namevalue="object_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+<key name="PRI" type="PRIMARY">
+<part>object_id</part>
+</key>
+</row>
+<row name="term_taxonomy_id" namevalue="term_taxonomy_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+<key name="PRI" type="PRIMARY">
+<part>term_taxonomy_id</part>
+</key>
+</row>
+<row name="term_order" namevalue="term_order" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default>
+</row>
+<key name="PRIMARY" type="UNIQUE">
+<part>object_id</part>
+<part>term_taxonomy_id</part>
+</key>
+<key name="term_taxonomy_id" type="UNIQUE">
+<part>term_taxonomy_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>object_id</part>
+<part>term_taxonomy_id</part>
+</key>
+</table>
+<table name="wp_term_taxonomy">
+<row name="term_taxonomy_id" namevalue="term_taxonomy_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>term_taxonomy_id</part>
+</key>
+</row>
+<row name="term_id" namevalue="term_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="taxonomy" namevalue="taxonomy" null="0" datatypename="varchar(32)" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default/>
+</row>
+<row name="description" namevalue="description" null="0" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<row name="parent" namevalue="parent" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="count" namevalue="count" null="0" datatypename="bigint(20)" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<default>0</default>
+</row>
+<key name="PRIMARY" type="UNIQUE">
+<part>term_taxonomy_id</part>
+</key>
+<key name="taxonomy" type="UNIQUE">
+<part>taxonomy</part>
+</key>
+<key name="term_id_taxonomy" type="UNIQUE">
+<part>term_id</part>
+<part>taxonomy</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>term_taxonomy_id</part>
+</key>
+</table>
+<table name="wp_terms">
+<row name="term_id" namevalue="term_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>term_id</part>
+</key>
+</row>
+<row name="name" namevalue="name" null="0" datatypename="varchar(200)" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+<default/>
+</row>
+<row name="slug" namevalue="slug" null="0" datatypename="varchar(200)" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+<default/>
+</row>
+<row name="term_group" namevalue="term_group" null="0" datatypename="bigint(10)" autoincrement="0">
+<datatype>BIGINT(10)</datatype>
+<default>0</default>
+</row>
+<key name="name" type="UNIQUE">
+<part>name</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>term_id</part>
+</key>
+<key name="slug" type="UNIQUE">
+<part>slug</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>term_id</part>
+</key>
+</table>
+<table name="wp_usermeta">
+<row name="umeta_id" namevalue="umeta_id" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>umeta_id</part>
+</key>
+</row>
+<row name="user_id" namevalue="user_id" null="0" datatypename="bigint(20) unsigned" autoincrement="0">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default>0</default>
+</row>
+<row name="meta_key" namevalue="meta_key" null="1" datatypename="varchar(255)" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default/>
+</row>
+<row name="meta_value" namevalue="meta_value" null="1" datatypename="longtext" autoincrement="0">
+<datatype>LONGTEXT</datatype>
+<default/>
+</row>
+<key name="meta_key" type="UNIQUE">
+<part>meta_key</part>
+</key>
+<key name="PRIMARY" type="UNIQUE">
+<part>umeta_id</part>
+</key>
+<key name="user_id" type="UNIQUE">
+<part>user_id</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>umeta_id</part>
+</key>
+</table>
+<table name="wp_users">
+<row name="ID" namevalue="ID" null="0" datatypename="bigint(20) unsigned" autoincrement="1">
+<datatype>BIGINT(20) UNSIGNED</datatype>
+<default/>
+<key name="PRI" type="PRIMARY">
+<part>ID</part>
+</key>
+</row>
+<row name="user_login" namevalue="user_login" null="0" datatypename="varchar(60)" autoincrement="0">
+<datatype>VARCHAR(60)</datatype>
+<default/>
+</row>
+<row name="user_pass" namevalue="user_pass" null="0" datatypename="varchar(64)" autoincrement="0">
+<datatype>VARCHAR(64)</datatype>
+<default/>
+</row>
+<row name="user_nicename" namevalue="user_nicename" null="0" datatypename="varchar(50)" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default/>
+</row>
+<row name="user_email" namevalue="user_email" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="user_url" namevalue="user_url" null="0" datatypename="varchar(100)" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default/>
+</row>
+<row name="user_registered" namevalue="user_registered" null="0" datatypename="datetime" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>0000-00-00 00:00:00</default>
+</row>
+<row name="user_activation_key" namevalue="user_activation_key" null="0" datatypename="varchar(60)" autoincrement="0">
+<datatype>VARCHAR(60)</datatype>
+<default/>
+</row>
+<row name="user_status" namevalue="user_status" null="0" datatypename="int(11)" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default>
+</row>
+<row name="display_name" namevalue="display_name" null="0" datatypename="varchar(250)" autoincrement="0">
+<datatype>VARCHAR(250)</datatype>
+<default/>
+</row>
+<key name="PRIMARY" type="UNIQUE">
+<part>ID</part>
+</key>
+<key name="user_login_key" type="UNIQUE">
+<part>user_login</part>
+</key>
+<key name="user_nicename" type="UNIQUE">
+<part>user_nicename</part>
+</key>
+<key name="PRIMARY" type="PRIMARY">
+<part>ID</part>
+</key>
+</table>
+</sql>

@@ -1,0 +1,120 @@
+本文涉及技术点：
+解释型语言 声明提前 值传递 引用传递 闭包 函数传递 内存泄漏 事件驱动设计 回调 
+<p id="myDiv"></p>
+<div>
+http://www.cnblogs.com/xiaotie/archive/2011/08/03/2126145.html
+http://segmentfault.com/a/1190000000652891
+http://www.jb51.net/article/24101.htm
+http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html
+http://blog.csdn.net/zzzaquarius/article/details/4902235
+</div>
+<script>
+/**
+  * 顺序解释：最后的覆盖
+  */
+function bee() {
+	console.log(1);
+}
+bee();
+// 结果 2
+function bee() {
+	console.log(2);
+}
+bee();
+// 结果 2
+
+/**
+  * 闭包
+  */
+function foo(x) {
+  var tmp = 3;
+  function bar(y) {
+    console.log(x + y + (++tmp));
+  }
+  bar(10);
+}
+foo(2);
+// 单独结果 16
+// 实际结果 无任何动作 因为foo被覆盖
+
+/**
+  * 声明提前
+  */
+function foo(x) {
+  var tmp = 3;
+  return function(y) {
+    console.log(x + y + (++tmp));
+  }
+}
+var bar = foo(2); // bar 现在是一个闭包
+/** bar = function foo(2) {
+		var tmp = 3;
+		return function(y) {
+			console.log(2 + y + (++3));
+		}
+	}
+	bar = function(y) {
+		console.log(2 + y + (++3));
+	} */
+console.log("age = " + age);
+bar(10);
+// 单独结果 16
+// 实际结果 15 undefined 原因：age此时还未创建 可以测试console.log(age); 
+// 但为何foo有效？ 因为声明提前
+
+/**
+  * 内存泄漏
+  */
+function foo(x) {
+  var tmp = 3;
+  return function (y) {
+    console.log(x + y + tmp);
+    x.memb = x.memb ? x.memb + 1 : 1;
+    console.log(x.memb);
+  }
+}
+var age = new Number(2);
+var bar = foo(age); // bar 现在是一个引用了age的闭包
+bar(10);
+bar(10);
+
+/**
+  * 创建含有隐藏数据的函数
+  */
+var db = (function() {
+  // 创建一个隐藏的object, 这个object持有一些数据
+  // 从外部是不能访问这个object的
+  var data = {};
+  // 创建一个函数, 这个函数提供一些访问data的数据的方法
+  return function (key, val) {
+    if (val === undefined) { return data[key] } // get
+    else { return data[key] = val } // set
+  }
+  // 我们可以调用这个匿名方法
+  // 返回这个内部函数，它（db）是一个闭包
+})();
+console.log(db('x'));    // 返回 undefined
+console.log(db('x', 1)); // 设置data['x']为1
+console.log(db('x'));    // 返回 1
+
+/**
+  * 不用return关键字的闭包
+  */
+function closureExample(obj, text, timedelay) { 
+    setTimeout(function() {
+			document.getElementById(obj).innerHTML = text; 
+        }, timedelay); 
+} 
+closureExample('myDiv', 'Closure is created', 1000); 
+
+/**
+  * 函数传递
+  */
+function func1(value) {
+	console.log(value);
+}
+function func2(someFunction, value) {
+	someFunction(value);
+}
+func2(func1, "这就是函数传递");
+</script>

@@ -1,0 +1,52 @@
+值传递 引用传递 演示
+<script>
+/**
+  * 函数的声明和调用
+  */
+function abcFunc() {
+	console.log("abc");
+}
+var abc = abcFunc();
+
+function cdeFunc(x) {
+	console.log(x);
+}
+var cde = cdeFunc("cde");
+
+function defFunc(x) {
+	return function() {
+		console.log(x);
+	}
+}
+var def = defFunc("def");
+def();
+
+
+/**
+  * 值传递 引用传递 演示
+  */
+var add_handlers = function (nodes) {
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+        nodes[i] = function () {
+			console.log("node : " + i);	
+        }() 
+		// ()意思是自动调用函数的意思。
+		// 加了()，每次出现nodes[i]，函数都会被调用；
+		// 不加，nodes[i]就是一个函数，在需要调用的时候，用nodes[i]()的形式显式调用。
+		nodes[i];
+    }
+};
+var add_handlers = function (nodes) {
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+        nodes[i] = function (i) {
+			return function(){
+				console.log("node : " + i);	
+			}
+		}; // 这里必须是(i)而不是()，如果这里写一个(i)，下面就要少写一个。
+		nodes[i](i)(); // 前面的(i)是外层，后面的()是内层。
+    }
+};
+add_handlers(new Array(1, 2, 3));
+</script>

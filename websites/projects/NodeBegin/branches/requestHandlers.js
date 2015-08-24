@@ -32,7 +32,7 @@ function upload(response, request) {
   form.uploadDir = "./tmp";
   console.log("about to parse");
   form.parse(request, function(error, fields, files) {
-    // 先在F盘创建tmp文件夹
+    // 先创建tmp文件夹 位置 1 项目文件夹 2 盘符根目录
     console.log("parsing done");
     console.log(files.upload.path);
     fs.renameSync(files.upload.path, "/tmp/test.png");
